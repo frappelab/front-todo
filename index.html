@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>Mis Tareas</h1>
+      <p class="app__subtitle">Conectado a la API de Todo</p>
+    </header>
+
+    <form id="task-form" class="task-form">
+      <div class="task-form__row">
+        <input
+          type="text"
+          id="title-input"
+          placeholder="Título de la tarea"
+          maxlength="120"
+          required
+        />
+      </div>
+      <div class="task-form__row">
+        <textarea
+          id="description-input"
+          placeholder="Descripción (opcional)"
+          maxlength="500"
+          rows="2"
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">
+        <span>Agregar tarea</span>
+      </button>
+    </form>
+
+    <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+
+    <section class="task-list-section">
+      <div class="task-list-header">
+        <h2>Pendientes <span id="count-pending" class="count-badge">0</span></h2>
+      </div>
+      <ul id="pending-list" class="task-list"></ul>
+
+      <div class="task-list-header task-list-header--done">
+        <h2>Completadas <span id="count-done" class="count-badge">0</span></h2>
+      </div>
+      <ul id="done-list" class="task-list"></ul>
+
+      <p id="empty-message" class="empty-message" hidden>
+        No tienes tareas todavía. ¡Agrega la primera!
+      </p>
+    </section>
+  </main>
+
+  <div id="edit-modal" class="modal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__content">
+      <h3>Editar tarea</h3>
+      <form id="edit-form">
+        <input type="hidden" id="edit-id" />
+        <label for="edit-title">Título</label>
+        <input type="text" id="edit-title" maxlength="120" required />
+        <label for="edit-description">Descripción</label>
+        <textarea id="edit-description" maxlength="500" rows="3"></textarea>
+        <div class="modal__actions">
+          <button type="button" class="btn btn--ghost" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn btn--primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
